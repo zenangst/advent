@@ -39,4 +39,5 @@ xcuserdata/
 *.xcodeproj
 *.xcworkspace
 Derived
+.nova
 .swiftpm
