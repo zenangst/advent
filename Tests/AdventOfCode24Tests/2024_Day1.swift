@@ -44,14 +44,13 @@ import Testing
 
  */
 
-@Test("https://adventofcode.com/2024/day/1")
-func AdventOfCode_2024_01_example_part1() throws {
-    let contents = try readFile("2024/01/example.txt")
+fileprivate func part1(_ file: String) throws -> Int {
+    let contents = try readFile(file)
         .split(separator: "\n")
         .map {
             $0
-             .split(separator: "   ")
-             .compactMap { Int(String($0)) }
+                .split(separator: "   ")
+                .compactMap { Int(String($0)) }
         }
 
     let firstList = contents.compactMap { $0[0] }.sorted()
@@ -64,37 +63,21 @@ func AdventOfCode_2024_01_example_part1() throws {
         listResult.append(distance)
     }
 
-    #expect(listResult == [2, 1, 0, 1, 2, 5])
-
     let result = listResult.reduce(0) { partialResult, value in
         partialResult + value
     }
-    #expect(result == 11)
+
+    return result
+}
+
+@Test("https://adventofcode.com/2024/day/1")
+func AdventOfCode_2024_01_example_part1() throws {
+    #expect(try part1("2024/01/example.txt") == 11)
 }
 
 @Test
 func AdventOfCode_2024_01_part1() throws {
-    let contents = try readFile("2024/01/input1.txt")
-        .split(separator: "\n")
-        .map {
-            $0.split(separator: "   ")
-              .compactMap { Int(String($0)) }
-        }
-
-    let firstList = contents.compactMap { $0[0] }.sorted()
-    let secondList = contents.compactMap { $0[1] }.sorted()
-
-    var listResult = [Int]()
-    for (index, lhs) in firstList.enumerated() {
-        let rhs = secondList[index]
-        let distance = abs(lhs - rhs)
-        listResult.append(distance)
-    }
-
-    let result = listResult.reduce(0) { partialResult, value in
-        partialResult + value
-    }
-    #expect(result == 1320851)
+    #expect(try part1("2024/01/input1.txt") == 1320851)
 }
 
 /*
@@ -129,9 +112,8 @@ func AdventOfCode_2024_01_part1() throws {
  Once again consider your left and right lists. What is their similarity score?
  */
 
-@Test("Day1_Example2")
-func AdventOfCode_2024_01_example_part2() throws {
-    let contents = try readFile("2024/01/example.txt")
+fileprivate func part2(_ file: String) throws -> Int {
+    let contents = try readFile(file)
         .split(separator: "\n")
         .map {
             $0
@@ -147,26 +129,16 @@ func AdventOfCode_2024_01_example_part2() throws {
         result += lhs * secondList.count(where: { $0 == lhs })
     }
 
-    #expect (result == 31)
+    return result
+}
+
+@Test
+func AdventOfCode_2024_01_example_part2() throws {
+    #expect(try part2("2024/01/example.txt") == 31)
 }
 
 
 @Test
 func AdventOfCode_2024_01_part2() throws {
-    let contents = try readFile("2024/01/input1.txt")
-        .split(separator: "\n")
-        .map {
-            $0.split(separator: "   ")
-                .compactMap { Int(String($0)) }
-        }
-
-    let firstList = contents.compactMap { $0[0] }.sorted()
-    let secondList = contents.compactMap { $0[1] }.sorted()
-
-    var result = 0
-    for lhs in firstList {
-        result += lhs * secondList.count(where: { $0 == lhs })
-    }
-
-    #expect (result == 26859182)
+    #expect(try part2("2024/01/input1.txt") == 26859182)
 }
