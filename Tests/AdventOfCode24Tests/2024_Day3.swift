@@ -1,4 +1,4 @@
-@testable import AdventOfCode2024
+import AdventOfCode2024
 import RegexBuilder
 import Testing
 
@@ -125,4 +125,3 @@ func AdventOfCode_2024_03_part2() throws {
     let result = try part2("2024/03/input.txt")
     #expect(result == 90772405)
 }
-

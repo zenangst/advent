@@ -1,4 +1,4 @@
-@testable import AdventOfCode2024
+import AdventOfCode2024
 import Testing
 
 /*
